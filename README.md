@@ -21,9 +21,9 @@
 
 或者，可以自己部署一个 bot。参见下一节。
 
-# Installation
+## Installation
 
-## Dependencies
+### Dependencies
 
 * [Redis](https://redis.io/): 二虎 bot 使用 Redis 来当小本本
 * [Redis-py](https://github.com/andymccurdy/redis-py): 二虎 bot 使用 Redis-py 来向 Redis 数据库刻下今天 Weee 有什么货物
@@ -31,18 +31,18 @@
 * [Requests](https://requests.readthedocs.io/zh_CN/latest/): “Requests 是唯一的一个非转基因的 Python HTTP 库。Requests 允许你发送纯天然，植物饲养的 HTTP/1.1 请求，无需手工劳动。” 
 * [BeautifulSoup](https://pypi.org/project/beautifulsoup4/): 二虎喜欢喝美丽汤。二虎 bot 用美丽汤漂亮的解析 HTML。
 
-## Dependencies Installation
+### Dependencies Installation
 
 * For Redis: [https://redis.io/download#installation](https://redis.io/download#installation)
 * For Python: `$ pip install redis python-telegram-bot requests beautifulsoup4`
 
 如果你没有安装 pip （啧啧），这个 [Python installation guide](https://docs.python-guide.org/starting/installation/) 可以带你完成这一流程。
 
-## Configuration
+### Configuration
 
 把 `conf_demo.json` 改名为 `conf.json` ，在里面添加你的 telegram-userid 和 bot 的 TOKEN。Bot TOKEN 可以在 telegram 里向 @BotFather 申请获得。
 
-# Usage
+## Usage
 
 截止到本 README.md 的最终更新时间，二虎 bot有如下指令：
 
