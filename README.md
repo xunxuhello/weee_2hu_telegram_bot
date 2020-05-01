@@ -16,6 +16,11 @@
 
 二虎可真是个能干的宝宝。
 
+### 我怎样才可以使用二虎 bot？
+二虎 bot 已经被部署到 [https://t.me/weee\_2hu\_bot](https://t.me/weee_2hu_bot) 上，所以最简单的方法是向二虎他妈提出申请，发送 user id 以及 zip code 成为二虎的好朋友。
+
+或者，可以自己部署一个 bot。参见下一节。
+
 # Installation
 
 ## Dependencies
