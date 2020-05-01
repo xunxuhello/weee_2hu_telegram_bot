@@ -93,10 +93,9 @@ def get_filter(update, context):
 			text = "二虎知道你喜欢吃：" + ", ".join(fl)
 		else:
 			text = "二虎知道你不挑食～"
-		context.bot.send_message(chat_id=update.effective_chat.id, text=text)
 	else:
 		info_text = auth.get_premission_error_message()
-		context.bot.send_message(chat_id=uid, text=info_text)
+	context.bot.send_message(chat_id=uid, text=info_text)
 
 dispatcher.add_handler(CommandHandler('get_filter', get_filter))
 
@@ -114,10 +113,9 @@ def add_filter(update, context):
 			info_text += "二虎知道你喜欢吃：" + ", ".join(fl)
 		else:
 			info_text = "快告诉二虎你喜欢吃啥～"
-		context.bot.send_message(chat_id=uid, text=info_text)
 	else:
 		info_text = auth.get_premission_error_message()
-		context.bot.send_message(chat_id=uid, text=info_text)
+	context.bot.send_message(chat_id=uid, text=info_text)
 
 dispatcher.add_handler(CommandHandler('add_filter', add_filter))
 
@@ -130,10 +128,9 @@ def clear_filter(update, context):
 	if auth.check_user_premission(uid):
 		weee_db.clear_filter(uid)
 		info_text = "二虎知道你不挑食～"
-		context.bot.send_message(chat_id=uid, text=info_text)
 	else:
 		info_text = auth.get_premission_error_message()
-		context.bot.send_message(chat_id=uid, text=info_text)
+	context.bot.send_message(chat_id=uid, text=info_text)
 
 dispatcher.add_handler(CommandHandler('clear_filter', clear_filter))
 
@@ -151,11 +148,10 @@ def update_zipcode(update, context):
 			info_text = "更新成功～"
 		else:
 			info_text = "请输入正确的 zipcode 喔。"
-		context.bot.send_message(chat_id=uid, text=info_text)
 
 	else:
 		info_text = auth.get_premission_error_message()
-		context.bot.send_message(chat_id=uid, text=info_text)
+	context.bot.send_message(chat_id=uid, text=info_text)
 
 dispatcher.add_handler(CommandHandler('update_zipcode', update_zipcode))
 
