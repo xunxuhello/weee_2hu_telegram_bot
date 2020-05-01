@@ -24,7 +24,7 @@
 * [Redis-py](https://github.com/andymccurdy/redis-py): 二虎 bot 使用 Redis-py 来向 Redis 数据库刻下今天 Weee 有什么货物
 * [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot): 二虎 bot 用 python-telegram-bot 来向 telegram 发送喵喵喵
 * [Requests](https://requests.readthedocs.io/zh_CN/latest/): “Requests 是唯一的一个非转基因的 Python HTTP 库。Requests 允许你发送纯天然，植物饲养的 HTTP/1.1 请求，无需手工劳动。” 
-* [BeautifulSoup](https://pypi.org/project/beautifulsoup4/): 二虎喜欢喝美丽汤。二虎用美丽汤漂亮的解析 HTML。
+* [BeautifulSoup](https://pypi.org/project/beautifulsoup4/): 二虎喜欢喝美丽汤。二虎 bot 用美丽汤漂亮的解析 HTML。
 
 ## Dependencies Installation
 
@@ -39,6 +39,18 @@
 
 # Usage
 
-TODO
+截止到本 README.md 的最终更新时间，二虎 bot有如下指令：
+
+* start - 摸摸二虎的头头
+* get\_my\_id - 二虎二虎，我的ID是多少喔
+* update\_zipcode - 更新我的地址喵
+* get\_filter - 二虎二虎，我喜欢吃什么
+* add\_filter - 告诉二虎你喜欢吃什么
+* clear\_filter - 告诉二虎你什么都喜欢吃
+* update\_weee - 二虎二虎，快去看看有没有好吃的
+* check\_premission - 摸摸二虎的小肚肚
+* check\_user\_list - 二虎有多少个小伙伴呀
+* add\_user - 认识了一个新的小伙伴
+* delete\_user - 不给吃的不理你了
 
 
