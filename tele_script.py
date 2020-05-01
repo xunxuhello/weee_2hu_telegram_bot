@@ -77,7 +77,7 @@ def get_my_id(update, context):
 	text = "喵！你的UID是 %s 喔！"%(uid)
 	if auth.check_user_premission(uid):
 		text += "\n"
-		text += str(weee_db.read_user_info(uid))
+		text += str(weee_db.get_user_info(uid))
 	context.bot.send_message(chat_id=update.effective_chat.id, text=text)
 
 dispatcher.add_handler(CommandHandler('get_my_id', get_my_id))
@@ -170,7 +170,7 @@ def update_weee(update, context):
 	if (auth.check_user_premission(uid) and
 		(datetime.datetime.now()-update_time).seconds > 10):
 		zip2uid = weee_db.get_zip2uid()
-		uzip = weee_db.read_user_info(uid)["zip"]
+		uzip = weee_db.get_user_info(uid)["zip"]
 		if (auth.check_admin_premission(uid) and 
 			len(context.args) == 2 and 
 			re.match(r"^[0-9]{5}$", context.args[1])):
@@ -205,10 +205,10 @@ command check_user_list
 def check_user_list(update, context):
 	info_text = ""
 	if auth.check_admin_premission(update.effective_user.id):
-		ulist = weee_db.read_user_list()
+		ulist = weee_db.get_user_list()
 		info_text = ""
 		for u in ulist:
-			info_text += u + " " + str(weee_db.read_user_info(u))
+			info_text += u + " " + str(weee_db.get_user_info(u))
 			info_text += "\n"
 	else:
 		info_text = auth.get_premission_error_message()
@@ -244,7 +244,7 @@ def add_user(update, context):
 			uid, zipcode = context.args[0], context.args[1]
 			weee_db.add_user(uid)
 			weee_db.add_user_info(uid, {"zip": zipcode})
-			info_text = str(weee_db.read_user_info(uid))
+			info_text = str(weee_db.get_user_info(uid))
 	else:
 		info_text = auth.get_premission_error_message()
 	context.bot.send_message(chat_id=update.effective_chat.id, text=info_text)
@@ -259,7 +259,7 @@ def delete_user(update, context):
 	info_text = ""
 	if auth.check_admin_premission(update.effective_user.id):
 		weee_db.delete_user(context.args[0])
-		info_text = str(weee_db.read_user_list())
+		info_text = str(weee_db.get_user_list())
 	else:
 		info_text = auth.get_premission_error_message()
 	context.bot.send_message(chat_id=update.effective_chat.id, text=info_text)

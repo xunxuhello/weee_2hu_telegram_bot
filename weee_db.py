@@ -14,25 +14,25 @@ TOOLS
 """
 def get_zip2uid():
 	zip2uid = collections.defaultdict(list)
-	for uid in read_user_list():
-		uzip = read_user_info(uid)["zip"]
+	for uid in get_user_list():
+		uzip = get_user_info(uid)["zip"]
 		zip2uid[uzip].append(uid)
 	return zip2uid
 
 """
 API for user list
 """
-def read_user_list():
+def get_user_list():
 	l = r.get("user_list")
 	return json.loads(r.get("user_list")) if l else []
 
 def add_user(uid):
-	l = read_user_list()
+	l = get_user_list()
 	l = list(set(l + [uid]))
 	r.set("user_list", json.dumps(l))
 
 def delete_user(uid):
-	l = read_user_list()
+	l = get_user_list()
 	l = [i for i in l if i != uid]
 	r.set("user_list", json.dumps(l))
 
@@ -45,7 +45,7 @@ def get_info_key(u):
 def add_user_info(u, d):
 	r.set(get_info_key(u), json.dumps(d))
 
-def read_user_info(u):
+def get_user_info(u):
 	return json.loads(r.get(get_info_key(u)))
 
 """
