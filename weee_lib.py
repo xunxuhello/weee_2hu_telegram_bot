@@ -81,9 +81,6 @@ def dic_to_strarr_by_type(dic):
 				strarr.append(text)
 	return strarr
 
-def dic_to_str_by_type(dic):
-	return "\n\n".join(dic_to_strarr_by_type(dic))
-
 def dic_sub(now_dic, priv_dic):
 	return dict((k, v) for k, v in now_dic.items() if k not in priv_dic)
 
