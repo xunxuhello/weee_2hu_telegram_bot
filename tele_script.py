@@ -133,7 +133,7 @@ def delete_filter(update, context):
             fl = [w.encode('utf8') for w in weee_db.get_filter(uid)]
             info_text = "二虎知道你喜欢吃：" + ", ".join(fl)
         else:
-            info_text = "快告诉二虎你啥吃腻了～"
+            info_text = "快告诉二虎你吃腻了啥～"
     else:
         info_text = auth.get_premission_error_message()
     context.bot.send_message(chat_id=uid, text=info_text)
