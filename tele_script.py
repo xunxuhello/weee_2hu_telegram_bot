@@ -139,25 +139,20 @@ dispatcher.add_handler(CommandHandler('clear_filter', clear_filter))
 command update_zipcode
 """
 def update_zipcode(update, context):
-    uid = update.effective_user.id
-    if auth.check_admin_premission(uid) and len(context.args) == 2:
-        set_uid =context.args[0]
-        zipcode = context.args[1]
+    def set_zipcode(uid, set_uid, zipcode):
         if not re.match(r"^[0-9]{5}$", zipcode):
-        info_text = "请输入正确的 zipcode 喔。"
+            info_text = "请输入正确的 zipcode 喔。"
         elif not auth.check_user_premission(set_uid):
-        info_text = "请输入正确的 user id 喔。"
+            info_text = "请输入正确的 user id 喔。"
         else:
             weee_db.add_user_info(set_uid, {"zip": zipcode})
             info_text = "更新成功～"
+        return info_text
+    uid = update.effective_user.id
+    if auth.check_admin_premission(uid) and len(context.args) == 2:
+        info_text = set_zipcode(uid, context.args[0], context.args[1])
     elif auth.check_user_premission(uid):
-        if len(context.args) == 1 and re.match(r"^[0-9]{5}$", context.args[0]):
-            zipcode = context.args[0]
-            weee_db.add_user_info(uid, {"zip": zipcode})
-            info_text = "更新成功～"
-        else:
-            info_text = "请输入正确的 zipcode 喔。"
-
+        info_text = set_zipcode(uid, uid, context.args[0])
     else:
         info_text = auth.get_premission_error_message()
     context.bot.send_message(chat_id=uid, text=info_text)
