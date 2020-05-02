@@ -6,6 +6,7 @@ from telegram.ext import CommandHandler
 from telegram.ext import MessageHandler, Filters
 import datetime
 import re
+import random
 
 import weee_lib
 import weee_db
@@ -152,7 +153,7 @@ def update_zipcode(update, context):
     uid = update.effective_user.id
     if auth.check_admin_premission(uid) and len(context.args) == 2:
         info_text = set_zipcode(uid, context.args[0], context.args[1])
-    elif auth.check_user_premission(uid):
+    elif auth.check_user_premission(uid) and len(context.args) == 1:
         info_text = set_zipcode(uid, uid, context.args[0])
     else:
         info_text = auth.get_premission_error_message()
@@ -274,6 +275,7 @@ command END
 
 
 def echo(update, context):
+
     context.bot.send_message(chat_id=update.effective_chat.id, text="喵喵喵！")
 
 echo_handler = MessageHandler(Filters.text & (~Filters.command), echo)
