@@ -107,6 +107,11 @@ def add_filter(u, l):
         arr.append(w)
     set_filter(u, list(set(arr)))
 
+def delete_filter(u, l):
+    arr = get_filter(u)
+    arr = [w for w in arr if w not in l]
+    set_filter(u, list(set(arr)))
+
 def clear_filter(u):
     set_filter(u, [])
 

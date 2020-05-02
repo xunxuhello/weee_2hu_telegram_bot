@@ -123,6 +123,25 @@ dispatcher.add_handler(CommandHandler('add_filter', add_filter))
 
 
 """
+command delete_filter
+"""
+def delete_filter(update, context):
+    uid = update.effective_user.id
+    if auth.check_user_premission(uid):
+        if len(context.args) != 0:
+            weee_db.delete_filter(uid, context.args)
+            fl = [w.encode('utf8') for w in weee_db.get_filter(uid)]
+            info_text = "二虎知道你喜欢吃：" + ", ".join(fl)
+        else:
+            info_text = "快告诉二虎你啥吃腻了～"
+    else:
+        info_text = auth.get_premission_error_message()
+    context.bot.send_message(chat_id=uid, text=info_text)
+
+dispatcher.add_handler(CommandHandler('delete_filter', delete_filter))
+
+
+"""
 command clear_filter
 """
 def clear_filter(update, context):
