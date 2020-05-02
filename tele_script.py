@@ -140,8 +140,17 @@ command update_zipcode
 """
 def update_zipcode(update, context):
     uid = update.effective_user.id
-    if auth.check_user_premission(uid):
-
+    if auth.check_admin_premission(uid) and len(context.args) == 2:
+        set_uid =context.args[0]
+        zipcode = context.args[1]
+        if not re.match(r"^[0-9]{5}$", zipcode):
+        info_text = "请输入正确的 zipcode 喔。"
+        elif not auth.check_user_premission(set_uid):
+        info_text = "请输入正确的 user id 喔。"
+        else:
+            weee_db.add_user_info(set_uid, {"zip": zipcode})
+            info_text = "更新成功～"
+    elif auth.check_user_premission(uid):
         if len(context.args) == 1 and re.match(r"^[0-9]{5}$", context.args[0]):
             zipcode = context.args[0]
             weee_db.add_user_info(uid, {"zip": zipcode})
