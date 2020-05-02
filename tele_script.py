@@ -285,7 +285,12 @@ def echo(update, context):
         arr.append(check_premission_info(uid))
         arr.append("二虎不知道怎么解释，因为二虎只是一只小猫咪。")
         return random.choice(arr)
-    info_text = get_random_echo(update.effective_chat.id)
+    if update.message.forward_from:
+        f_user = update.message.forward_from
+        info_text =  "%s, %s, %s, %s"%(f_user.id, 
+           f_user.first_name, f_user.last_name, f_user.username)
+    else:
+        info_text = get_random_echo(update.effective_chat.id)
     context.bot.send_message(chat_id=update.effective_chat.id, text=info_text)
 
 echo_handler = MessageHandler(Filters.text & (~Filters.command), echo)
