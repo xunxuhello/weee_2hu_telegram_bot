@@ -3,6 +3,7 @@
 import logging
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
+from telegram.ext import MessageHandler, Filters
 import datetime
 import re
 
@@ -270,6 +271,14 @@ dispatcher.add_handler(CommandHandler('delete_user', delete_user))
 """
 command END
 """
+
+
+def echo(update, context):
+    context.bot.send_message(chat_id=update.effective_chat.id, text="喵喵喵！")
+
+echo_handler = MessageHandler(Filters.text & (~Filters.command), echo)
+dispatcher.add_handler(echo_handler)
+
 
 
 """
