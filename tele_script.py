@@ -218,17 +218,21 @@ def check_user_list(update, context):
 
 dispatcher.add_handler(CommandHandler('check_user_list', check_user_list))
 
-"""
-command check_premission
-"""
-def check_premission(update, context):
-    info_text = ""
+
+def check_premission_info():
     if auth.check_admin_premission(update.effective_user.id):
         info_text = "喵！是铲屎官！"
     elif auth.check_user_premission(update.effective_user.id):
         info_text = "二虎亲热的蹭了蹭你！"
     else:
         info_text = auth.get_premission_error_message()
+    return info_text
+
+"""
+command check_premission
+"""
+def check_premission(update, context):
+    info_text = check_premission_info()
     context.bot.send_message(chat_id=update.effective_chat.id, text=info_text)
 
 dispatcher.add_handler(CommandHandler('check_premission', check_premission))
@@ -275,8 +279,14 @@ command END
 
 
 def echo(update, context):
-
-    context.bot.send_message(chat_id=update.effective_chat.id, text="喵喵喵！")
+	def get_random_echo():
+	    arr = []
+	    arr.append("喵喵喵！")
+	    arr.append(check_premission_info())
+	    arr.append("二虎不知道怎么解释，因为二虎只是一只小猫咪。")
+	    return random.choice(arr)
+	info_text = get_random_echo()
+    context.bot.send_message(chat_id=update.effective_chat.id, text=info_text)
 
 echo_handler = MessageHandler(Filters.text & (~Filters.command), echo)
 dispatcher.add_handler(echo_handler)
