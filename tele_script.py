@@ -70,6 +70,61 @@ def start(update, context):
 
 dispatcher.add_handler(CommandHandler('start', start))
 
+"""
+command help
+"""
+def help(update, context):
+    info_text = """
+start - 摸摸二虎的头头
+
+发送 /start 开始使用二虎 bot。二虎会向你发出“喵”的声音已表示自己在线。
+
+help - 我该怎样使用二虎bot
+
+发送 /help 获得帮助。二虎会向你像吐毛球一样吐出本文档。
+
+get_my_id - 二虎二虎，我的ID是多少喔
+
+发送 /get_my_id 来查询自己的 telegram user id。telegram user id 是 telegram 的用户标识号码。二虎的管理员将会使用这个 user id 来将新用户加入到可使用名单中。
+
+如果你已经是二虎的小伙伴，那么二虎 bot 会同时返回您当前的 zip code。如果并没有返回 zip code，请联系二虎的妈妈并发送你的 user id 和 zip code。
+
+update_zipcode - 更新我的地址喵
+
+发送 /update_zipcode 来手动更新你的 zip code。二虎 bot 使用此 zip code 来抓取不同地区的 Weee 商品列表。请务必设置正确的 zip code 来获得你需要的地区的正确信息。
+
+Example: /update_zipcode 90007 （更新自己的地址为90007）
+
+get_filter - 二虎二虎，我喜欢吃什么
+
+发送 /get_filter 来获得当前你的关键词列表。如果你设置了关键词，那么二虎只会当符合关键词的商品上架时才会给你发送提醒。
+
+add_filter - 告诉二虎你喜欢吃什么
+
+发送 /add_filter 来添加你的关键词。如果你设置了关键词，那么二虎只会当符合关键词的商品上架时才会给你发送提醒。
+
+delete_filter - 告诉二虎你吃腻了啥
+
+发送 /delete_filter 来删除你的关键词。如果你设置了关键词，那么二虎只会当符合关键词的商品上架时才会给你发送提醒。
+
+clear_filter - 告诉二虎你什么都喜欢吃
+
+发送 /clear_filter 来清空你的关键词。如果你清空了关键词，那么二虎会给你推送所有商品的上新情况。
+
+update_weee - 二虎二虎，快去看看有没有好吃的
+
+发送 /update_weee来手动更新 Weee 的商品列表。二虎 bot 在接收到命令后，会自动发送请求进行更新，并检查上新情况。
+
+发送 /update_weee all 来获得目前所有weee的商品。发送 /update_weee filter 来获得目前所有符合你关键词的 Weee 商品。这可以用于检查你的关键词是否工作。
+
+check_premission - 摸摸二虎的小肚肚
+
+发送 /check_premission 来查看你的权限。权限有三种，管理员，用户，以及 guest。如果你是管理员，二虎会发出“是铲屎官！”的声音。如果你是 valid user，二虎会亲热的蹭一蹭你。如果你收到了“二虎躲在床底下”，请联系二虎他妈并提交你的 zip code 成为二虎的小伙伴。
+    """
+    context.bot.send_message(chat_id=update.effective_chat.id, text=info_text)
+
+dispatcher.add_handler(CommandHandler('help', help))
+
 
 """
 command get_my_id
