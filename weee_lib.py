@@ -4,7 +4,8 @@ from bs4 import BeautifulSoup
 import httplib
 
 httplib._MAXHEADERS = 1000
-headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36'}
+headers = {'accept-language': 'zh-CN,zh',
+'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36'}
 
 def get_link(pid):
     return "https://www.sayweee.com/product/view/" + pid
